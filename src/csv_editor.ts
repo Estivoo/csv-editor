@@ -130,7 +130,7 @@ export class CsvHtmlEditor {
     {
         if( clear )
         {
-            this.lastId= "";
+            this.lastId = "";
         }
 
         CsvHtmlEditor.fieldsValue = fields;
@@ -177,7 +177,7 @@ export class CsvHtmlEditor {
             CsvHtmlEditor.fieldsValue.forEach( (v)=>{
                 allIds += `"${v[0]}",`;
             } );
-            allIds.slice( 0, -1 );
+            allIds = allIds.slice( 0, -1 );
 
             return `<!DOCTYPE html>
             <html lang="en">
@@ -207,7 +207,7 @@ export class CsvHtmlEditor {
                 document.getElementById("ids").value = '${this.lastId}';
                 const vscode = acquireVsCodeApi();
 
-                var lastSelected = null;
+                var lastSelected;
                 var source = [ ${allIds} ];
                 $("#ids").autocomplete( {
                     source: source,
@@ -226,7 +226,7 @@ export class CsvHtmlEditor {
                         {
                             idChanged( ui.item.label );
                         }
-                    }
+                    },
                     close: function( event, ui )
                     {
                         if( lastSelected != null )
