@@ -9,7 +9,7 @@ import * as fs from 'fs';
 import { performance } from 'perf_hooks';
 import { Context } from 'vm';
 
-var lastEditor : vscode.TextEditor;
+var lastEditor : vscode.TextEditor | null;
 export function activate(context: vscode.ExtensionContext) {
 	let disposable;
 	vscode.window.registerWebviewPanelSerializer("webview", {
@@ -23,6 +23,7 @@ export function activate(context: vscode.ExtensionContext) {
 			let activeTextEditor = vscode.window.activeTextEditor;
 			if( activeTextEditor !== null && activeTextEditor !== undefined )
 			{
+				lastEditor = null;
 				UpdateEditor( activeTextEditor, context );
 			}
 		})
@@ -48,7 +49,7 @@ function UpdateEditor( textEditor : vscode.TextEditor, context : Context )
 
 	var fileName = textEditor.document.fileName;
 	fs.watchFile( fileName, () => {
-		Parse( lastEditor, false );
+		Parse( textEditor, false );
 	} );
 
 	ParseAndShow( lastEditor, context );
