@@ -202,19 +202,36 @@ export class CsvHtmlEditor {
             </body>
             <script nonce="${nonce}">
                 document.getElementById("saveBtn").addEventListener("click", saveChanges);
-                document.getElementById("ids").addEventListener("oninput", idChanged);
+                document.getElementById("ids").addEventListener("input", function() { idChanged(this.value); } );
 
                 document.getElementById("ids").value = '${this.lastId}';
                 const vscode = acquireVsCodeApi();
+
+                var lastSelected = null;
                 var source = [ ${allIds} ];
                 $("#ids").autocomplete( {
                     source: source,
                     minLength: 1,
-                    select: function( e, u )
+                    select: function( event, ui )
                     {
-                        if( u != null )
+                        if( ui != null )
                         {
-                            idChanged( u.item.label );
+                            lastSelected = ui.item.label;
+                            idChanged( lastSelected );
+                        }
+                    },
+                    focus: function( event, ui )
+                    {
+                        if( ui != null )
+                        {
+                            idChanged( ui.item.label );
+                        }
+                    }
+                    close: function( event, ui )
+                    {
+                        if( lastSelected != null )
+                        {
+                            idChanged( lastSelected );
                         }
                     }
                 } );
