@@ -1,14 +1,22 @@
 {
 	"name": "csv-editor",
-	"displayName": "CSV editor",
-	"description": "CSV editor allow you to see all fields and edit those fields.",
+	"displayName": "Simple CSV editor",
+	"description": "edit large CSV easily",
 	"version": "0.0.1",
-	"publisher": "Mateusz Kin",
+	"publisher": "estivo",
+	"repository": "https://github.com/Estivoo/csv-editor",
+	"license": "MIT",
 	"engines": {
 		"vscode": "^1.35.0"
 	},
+	"bugs": {
+		"url": "https://github.com/Estivoo/csv-editor/issues"
+	},
 	"categories": [
 		"Other"
+	],
+	"keywords": [
+		"CSV"
 	],
 	"activationEvents": [
 		"*"
