@@ -4,7 +4,11 @@
 	"description": "edit large CSV easily",
 	"version": "0.0.1",
 	"publisher": "estivo",
-	"repository": "https://github.com/Estivoo/csv-editor",
+	"repository":
+	{
+		"type": "git",
+		"url": "https://github.com/Estivoo/csv-editor"
+	},
 	"license": "MIT",
 	"engines": {
 		"vscode": "^1.35.0"
