@@ -2,7 +2,7 @@
 	"name": "csv-editor",
 	"displayName": "Simple CSV editor",
 	"description": "edit large CSV easily",
-	"version": "0.1.1",
+	"version": "0.0.2",
 	"publisher": "estivo",
 	"repository": {
 		"type": "git",

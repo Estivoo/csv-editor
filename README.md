@@ -23,6 +23,10 @@ Show, edit and save CSV data. Really nothing much at this time.
 
 ## Release Notes
 
+### 0.0.2
+
+Parse only csv files.
+
 ### 0.0.1
 
 Initial release.
