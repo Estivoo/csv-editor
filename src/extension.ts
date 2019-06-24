@@ -40,7 +40,7 @@ export function activate(context: vscode.ExtensionContext) {
 
 function UpdateEditor( textEditor : vscode.TextEditor, context : Context )
 {
-	if( textEditor === lastEditor )
+	if( textEditor === lastEditor || !textEditor.document.fileName.endsWith( ".csv" ) )
 	{
 		return;
 	}
