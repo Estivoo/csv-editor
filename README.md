@@ -2,6 +2,10 @@
 
 Simple CSV Editor is just simple editor. Nothing much to say about it. It's much more readable thank plain text csv file. IMO very useful if you have a lot of text in your csv - if you you it as dictionary.
 
+## How to run
+
+Use command palette ( shift + ctrl + p / ctrl + p and then type '>' ) and find Simple CSV Editor. Press enter ;)
+
 ## Features
 
 Show, edit and save CSV data. Really nothing much at this time.
@@ -22,6 +26,14 @@ Show, edit and save CSV data. Really nothing much at this time.
 ![realtime_changes](https://raw.githubusercontent.com/Estivoo/csv-editor/master/gifs/add_new.gif "")
 
 ## Release Notes
+
+### 0.1.2
+
+Added "How to run" to readme. Thanks Levi Hitchcock <3
+
+### 0.1.1
+
+Nothing... vsce publish test.
 
 ### 0.0.2
 
