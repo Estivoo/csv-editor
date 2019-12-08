@@ -2,12 +2,12 @@ import * as vscode from 'vscode';
 import * as path from 'path';
 
 export class CsvHtmlEditor {
-	public static currentPanel: CsvHtmlEditor | undefined = undefined;
+    public static currentPanel: CsvHtmlEditor | undefined = undefined;
 
-	public static readonly viewType = 'csvEditor';
+    public static readonly viewType = 'csvEditor';
 
-	private readonly _panel: vscode.WebviewPanel;
-	private readonly _extensionPath: string;
+    private readonly _panel: vscode.WebviewPanel;
+    private readonly _extensionPath: string;
     private _disposables: vscode.Disposable[] = [];
     
     private static fieldsValue : string[][] = [];
@@ -16,24 +16,24 @@ export class CsvHtmlEditor {
     private lastId : string = "";
     
     public static createOrShow(extensionPath: string) {
-		const column = vscode.ViewColumn.Two;
+        const column = vscode.ViewColumn.Two;
 
-		if (CsvHtmlEditor.currentPanel) {
-			CsvHtmlEditor.currentPanel._panel.reveal(CsvHtmlEditor.currentPanel._panel.viewColumn);
-			return;
-		}
+        if (CsvHtmlEditor.currentPanel) {
+            CsvHtmlEditor.currentPanel._panel.reveal(CsvHtmlEditor.currentPanel._panel.viewColumn);
+            return;
+        }
 
-		const panel = vscode.window.createWebviewPanel(
-			CsvHtmlEditor.viewType,
-			'CSV Editor',
-			column,
-			{
+        const panel = vscode.window.createWebviewPanel(
+            CsvHtmlEditor.viewType,
+            'CSV Editor',
+            column,
+            {
                 enableScripts: true,
                 localResourceRoots: [vscode.Uri.file(path.join(extensionPath, 'scripts'))]
-			}
-		);
+            }
+        );
 
-		CsvHtmlEditor.currentPanel = new CsvHtmlEditor(panel, extensionPath);
+        CsvHtmlEditor.currentPanel = new CsvHtmlEditor(panel, extensionPath);
     }
     
     public static onSave( callback: ( table : string[][] ) => void )
@@ -42,26 +42,26 @@ export class CsvHtmlEditor {
     }
 
     private constructor(panel: vscode.WebviewPanel, extensionPath: string) {
-		this._panel = panel;
-		this._extensionPath = extensionPath;
+        this._panel = panel;
+        this._extensionPath = extensionPath;
 
-		this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
+        this._panel.onDidDispose(() => this.dispose(), null, this._disposables);
 
-		this._panel.webview.onDidReceiveMessage(
-			message => {
-				switch (message.command) {
-					case 'idChange':
+        this._panel.webview.onDidReceiveMessage(
+            message => {
+                switch (message.command) {
+                    case 'idChange':
                         this.lastId = message.value;
                         this.SendValues( this.lastId );
                         return;
                     case 'saveChanges':
                         this.SaveChanges( message.value );
                         return;
-				}
-			},
-			null,
-			this._disposables
-		);
+                }
+            },
+            null,
+            this._disposables
+        );
     }
 
     private SendValues( key : string )
@@ -110,21 +110,21 @@ export class CsvHtmlEditor {
     }   
 
     public static revive(panel: vscode.WebviewPanel, extensionPath: string) {
-		CsvHtmlEditor.currentPanel = new CsvHtmlEditor(panel, extensionPath);
-	}
+        CsvHtmlEditor.currentPanel = new CsvHtmlEditor(panel, extensionPath);
+    }
 
     public dispose() {
-		CsvHtmlEditor.currentPanel = undefined;
+        CsvHtmlEditor.currentPanel = undefined;
 
-		this._panel.dispose();
+        this._panel.dispose();
 
-		while (this._disposables.length) {
-			const x = this._disposables.pop();
-			if (x) {
-				x.dispose();
-			}
-		}
-	}
+        while (this._disposables.length) {
+            const x = this._disposables.pop();
+            if (x) {
+                x.dispose();
+            }
+        }
+    }
 
     public setForm( fields : string[][], clear : boolean )
     {
@@ -185,7 +185,7 @@ export class CsvHtmlEditor {
                 <meta charset="UTF-8">
                 <meta http-equiv="Content-Security-Policy" content="default-src vscode-resource: https:; style-src 'unsafe-inline' vscode-resource: https:; img-src vscode-resource: https:; script-src 'nonce-${nonce}';">
                 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-                <title>Cat Coding</title>
+                <title>CSV Editor</title>
                 <script src="${script1Uri}" nonce="${nonce}"></script>
                 <script src="${script2Uri}" nonce="${nonce}"></script>
                 <link rel="stylesheet" href="${script3Uri}">

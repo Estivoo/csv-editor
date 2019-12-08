@@ -27,6 +27,10 @@ Show, edit and save CSV data. Really nothing much at this time.
 
 ## Release Notes
 
+### 0.1.3
+
+Added delimiter prediction. If plugin will not be able to predict used delimiter user will be asked to type character.
+
 ### 0.1.2
 
 Added "How to run" to readme. Thanks Levi Hitchcock <3
